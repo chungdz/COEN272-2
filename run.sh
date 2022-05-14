@@ -13,7 +13,7 @@ python -m process_data.make_dict
 
 # My alogrithm
 python -m process_data.make_train_valid_test
-python train_nn.py --epoch=1
+python train_nn.py --epoch=2
 python predict_nn.py --epoch=0
 
 python -m process_data.make_mf_data
