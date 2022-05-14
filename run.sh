@@ -13,7 +13,7 @@ python -m process_data.make_dict
 
 # My alogrithm
 python -m process_data.make_train_valid_test
-
+python train.py
 
 # PIN 3119481346890577
 

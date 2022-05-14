@@ -7,7 +7,7 @@ class ModelConfig():
     def __init__(self):
 
         self.mnum = 1001
-        self.rnum = 6
+        self.rnum = 5
         self.rate_hidden = 10
         self.mhidden = 50
         self.his = 20

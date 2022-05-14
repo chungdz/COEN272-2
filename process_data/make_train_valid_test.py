@@ -8,7 +8,7 @@ random.seed(7)
 
 dpath = 'data'
 max_l = 20
-pad = (0, 0)
+pad = (0, 3)
 ratio = 10
 
 udict = pickle.load(open(os.path.join(dpath, 'udict.pkl'), 'rb'))
@@ -19,6 +19,9 @@ test20 = pickle.load(open(os.path.join(dpath, 'test20.pkl'), 'rb'))
 
 trainp = os.path.join(dpath, 'train.npy')
 validp = os.path.join(dpath, 'valid.npy')
+test5p = os.path.join(dpath, 'test5.npy')
+test10p = os.path.join(dpath, 'test10.npy')
+test20p = os.path.join(dpath, 'test20.npy')
 
 all_train = []
 all_valid = []
@@ -26,7 +29,7 @@ all_valid = []
 def generate_set(train_list, valid_list, cdict):
 
     for uid, uinfo in tqdm(cdict.items(), total=len(cdict)):
-        rlist = [(mid, rate) for mid, rate in uinfo['rated'].items()]
+        rlist = [(mid, rate - 1) for mid, rate in uinfo['rated'].items()]
         rlen = len(rlist)
         if rlen <= max_l + 1:
             # generate rlen - 1 dataset
@@ -78,7 +81,7 @@ def generate_test(cdict, savep):
     test_list = []
 
     for uid, uinfo in tqdm(cdict.items(), total=len(cdict)):
-        rlist = [(mid, rate) for mid, rate in uinfo['rated'].items()]
+        rlist = [(mid, rate - 1) for mid, rate in uinfo['rated'].items()]
         rlen = len(rlist)
         remain = max_l - rlen
         for _ in range(remain):
@@ -109,8 +112,8 @@ print(trainnp.shape, validnp.shape)
 np.save(trainp, trainnp)
 np.save(validp, validnp)
 
-generate_test(test5, 'test5.npy')
-generate_test(test10, 'test10.npy')
-generate_test(test20, 'test20.npy')
+generate_test(test5, test5p)
+generate_test(test10, test10p)
+generate_test(test20, test20p)
 
 
