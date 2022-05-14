@@ -16,4 +16,8 @@ python -m process_data.make_train_valid_test
 python train_nn.py --epoch=1
 python predict_nn.py --epoch=0
 
+python -m process_data.make_mf_data
+python train_mf.py --epoch=5
+python predict_mf.py --epoch=0
+
 # PIN 3119481346890577
