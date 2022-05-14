@@ -32,7 +32,7 @@ def run(cfg, train_dataset, valid_dataset):
     if cfg.start_epoch != -1:
         pretrained_model = torch.load(os.path.join(cfg.save_path, "model.ep{}".format(cfg.start_epoch)), map_location='cpu')
         print(model.load_state_dict(pretrained_model, strict=False))
-    model.to(0)
+    # model.to(0)
     # Build optimizer.
     steps_one_epoch = len(train_data_loader)
     train_steps = cfg.epoch * steps_one_epoch
@@ -56,7 +56,8 @@ def train(cfg, epoch, model, loader, optimizer, steps_one_epoch):
     loss_list = []
     for index, data in enum_dataloader:
         # 1. Forward
-        data = data.type(torch.LongTensor).to(0)
+        # data = data.type(torch.LongTensor).to(0)
+        data = data.type(torch.LongTensor)
         pred = model(data[:, 2:])
         loss = F.cross_entropy(pred, data[:, 1])
 
@@ -89,7 +90,8 @@ def validate(cfg, model, valid_data_loader):
     with torch.no_grad():
         for data in tqdm(valid_data_loader, total=len(valid_data_loader), desc="valid"):
             label_data = data[:, 1]
-            data = data.type(torch.LongTensor).to(0)
+            # data = data.type(torch.LongTensor).to(0)
+            data = data.type(torch.LongTensor)
             res = model(data[:, 2:])
             maxidx = res.argmax(dim=-1)
             labels += label_data.cpu().numpy().tolist()

@@ -28,7 +28,7 @@ def run(cfg, testset, savep):
     model = BasicRS(cfg.model_info)
     pretrained_model = torch.load(os.path.join(cfg.save_path, "model.ep{}".format(cfg.epoch)), map_location='cpu')
     print(model.load_state_dict(pretrained_model, strict=False))
-    model.to(0)
+    # model.to(0)
     
     model.eval()  
         
@@ -39,7 +39,8 @@ def run(cfg, testset, savep):
         for data in tqdm(data_loader, total=len(data_loader), desc="predict"):
             uid_data = data[:, 0]
             mid_data = data[:, 1]
-            data = data.type(torch.LongTensor).to(0)
+            # data = data.type(torch.LongTensor).to(0)
+            data = data.type(torch.LongTensor)
             res = model(data[:, 1:])
             maxidx = res.argmax(dim=-1) + 1
             uids += uid_data.cpu().numpy().tolist()
