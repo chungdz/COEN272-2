@@ -1,5 +1,5 @@
 # download dataset into data folder
-mkdir data
+mkdir data data/para
 cd data
 wget https://www.cse.scu.edu/~yfang/coen272/train.txt
 wget https://www.cse.scu.edu/~yfang/coen272/test5.txt
@@ -13,7 +13,7 @@ python -m process_data.make_dict
 
 # My alogrithm
 python -m process_data.make_train_valid_test
-python train.py
+python train_nn.py
 
 # PIN 3119481346890577
 

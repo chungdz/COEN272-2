@@ -101,6 +101,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--dpath", default="data/", type=str,
                         help="root path of all data")
 parser.add_argument("--epoch", default=20, type=int, help="training epoch")
+parser.add_argument("--batch_size", default=128, type=int, help="batch_size")
 parser.add_argument("--lr", default=0.001, type=float, help="Learning rate")
 parser.add_argument("--save_path", default='data/para/', type=str, help="path to save training model parameters")
 parser.add_argument("--show_batch", default=20, type=int, help="averaged batch loss will change each show_batch times")
