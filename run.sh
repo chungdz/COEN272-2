@@ -13,7 +13,8 @@ python -m process_data.make_dict
 
 # My alogrithm
 python -m process_data.make_train_valid_test
-python train_nn.py
+python train_nn.py --epoch=20
+python predict_nn.py --epoch=15
 
 # PIN 3119481346890577
 
