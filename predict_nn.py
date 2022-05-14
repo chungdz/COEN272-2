@@ -12,6 +12,12 @@ import pandas as pd
 from tqdm import tqdm
 from sklearn.metrics import roc_auc_score, roc_curve, accuracy_score
 
+# MAE of GIVEN 5 : 0.970613980242591
+# MAE of GIVEN 10 : 0.940166666666667
+# MAE of GIVEN 20 : 0.909231214430404
+# OVERALL MAE : 0.936997208996881
+
+
 def run(cfg, testset, savep):
 
     set_seed(7)
