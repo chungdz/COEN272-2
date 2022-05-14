@@ -34,7 +34,7 @@ def run(cfg, testset, savep):
             uid_data = data[:, 0]
             mid_data = data[:, 1]
             data = data.type(torch.LongTensor).to(0)
-            res = model(data[:, 2:])
+            res = model(data[:, 1:])
             maxidx = res.argmax(dim=-1) + 1
             uids += uid_data.cpu().numpy().tolist()
             mids += mid_data.cpu().numpy().tolist()
