@@ -56,6 +56,7 @@ def generate_set(train_list, valid_list, cdict):
                     train_list.append(new_row)
         else:
             exceed = rlen - max_l
+            exceed = max(exceed // 2, 1)
             for i in range(100 * exceed):
                 clist = random.sample(rlist, max_l + 1)
                 cur_mid, cur_rate =  clist.pop()
