@@ -42,7 +42,7 @@ def run(cfg, testset, savep):
 
     rlist = []
     for uid, mid, pred in zip(uids, mids, preds):
-        rlist.append(uid, mid, pred)
+        rlist.append([uid, mid, pred])
         
     final_df = pd.DataFrame(sorted(rlist, key=lambda x: (x[0], x[1])), columns=['uid', 'mid', 'ratings'])
     final_df.to_csv(os.path.join(cfg.dpath, savep), index=None, header=None, sep=' ')
