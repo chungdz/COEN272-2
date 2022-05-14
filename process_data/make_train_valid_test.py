@@ -32,10 +32,11 @@ def generate_set(train_list, valid_list, cdict):
         rlist = [(mid, rate - 1) for mid, rate in uinfo['rated'].items()]
         rlen = len(rlist)
         if rlen <= max_l + 1:
+            cur_set = []
             # generate rlen - 1 dataset
             for i in range(rlen):
                 clist = rlist.copy()
-                cur_mid, cur_rate =  clist.pop(i)
+                cur_mid, cur_rate = clist.pop(i)
                 remain = max_l - len(clist)
                 for _ in range(remain):
                     clist.append(pad)
@@ -49,14 +50,16 @@ def generate_set(train_list, valid_list, cdict):
                 for tmid, trate in clist:
                     new_row.append(trate)
                 assert(len(new_row) == 43)
+                cur_set.append(new_row)
+            
+            random.shuffle(cur_set)
+            curs = rlen // 3
+            valid_list += cur_set[curs:]
+            train_list += cur_set[:curs]
 
-                if (i + 1) % ratio == 0:
-                    valid_list.append(new_row)
-                else:
-                    train_list.append(new_row)
         else:
             exceed = rlen - max_l
-            exceed = max(exceed // 2, 1)
+            exceed = max(exceed // 4, 1)
             for i in range(100 * exceed):
                 clist = random.sample(rlist, max_l + 1)
                 cur_mid, cur_rate =  clist.pop()
