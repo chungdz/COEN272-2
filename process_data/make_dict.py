@@ -2,6 +2,7 @@ import pandas as pd
 import pickle
 import os
 from tqdm import tqdm
+import math
 
 dpath = 'data'
 
@@ -50,6 +51,10 @@ pickle.dump(udict, open(os.path.join(dpath, 'udict.pkl'), 'wb'))
 
 for mid, minfo in mdict.items():
     minfo['avg'] = sum(minfo['rated'].values()) / len(minfo['rated'])
+    # add one smooth to avoid movie that not be seen
+    # minfo['IUF'] = math.log2(len(udict) / (len(minfo['rated']) + 1))
+    # do not need add smooth
+    minfo['IUF'] = math.log2(len(udict) / len(minfo['rated']))
 pickle.dump(mdict, open(os.path.join(dpath, 'mdict.pkl'), 'wb'))
 
 test5 = load_test('test5.txt', 'test5.pkl')

@@ -11,9 +11,21 @@ cd ../
 # process data
 python -m process_data.make_dict
 
+# User based collaborate filtering with Pearson Similarity
 # generate score5_cf1.txt score10_cf1.txt score20_cf1.txt
 # Best score 0.831185355442456
 python cf_1.py
+
+# User based collaborate filtering with Cosine Simiarity
+# generate score5_cf2.txt score10_cf2.txt score20_cf2.txt
+# Best score 0.803767854211131
+python cf_2.py
+
+# User based Pearson Similarity with two moficiations:
+# 1. Inverse user frequency; 2. Case modification
+# generate score5_cf3.txt score10_cf3.txt score20_cf3.txt
+# Best score 0.78936135281563
+python cf_3.py
 
 # My own alogrithm
 # neural network
