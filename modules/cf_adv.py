@@ -15,9 +15,9 @@ class CFAdvanced:
             for mid, rating in uinfo['rated'].items():
                 uinfo['avg_rated'][mid] = rating - uinfo['avg']
                 uinfo['iuf_rate'][mid] = self.m[mid]['IUF'] * uinfo['rated'][mid]
-        self.epsilon = 1e-4
+        self.epsilon = 1
     
-    def cf(self, testd: dict, k=10):
+    def cf(self, testd: dict, k=100):
 
         final_res = []
 

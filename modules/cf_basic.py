@@ -12,7 +12,7 @@ class CFBasic:
             uinfo['avg_rated'] = {}
             for mid, rating in uinfo['rated'].items():
                 uinfo['avg_rated'][mid] = rating - uinfo['avg']
-        self.epsilon = 1e-4
+        self.epsilon = 1
     
     def cf(self, testd: dict, k=10):
 
