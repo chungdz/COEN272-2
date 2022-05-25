@@ -33,7 +33,7 @@ python cf_3.py
 
 # Item based Adjusted Similarity:
 # generate score5_cf4.txt score10_cf4.txt score20_cf4.txt
-# Best score 2.22442948612707
+# Best score 0.824741421769824
 python cf_4.py
 
 # My own alogrithm
