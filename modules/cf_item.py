@@ -19,9 +19,9 @@ class CFItem:
         final_res = []
 
         for uid, uinfo in tqdm(testd.items()):
-            # uinfo['Adjusted_rate'] = {}
-            # for mid, rating in uinfo['rated'].items():
-            #     uinfo['Adjusted_rate'][mid] = rating - uinfo['avg']
+            uinfo['Adjusted_rate'] = {}
+            for mid, rating in uinfo['rated'].items():
+                uinfo['Adjusted_rate'][mid] = rating - uinfo['avg']
             
             for predmid in uinfo['to_predict']:
                 # calculate weights
@@ -49,7 +49,7 @@ class CFItem:
         topdbr = []
         for mwieght, smid in wl:
             topdbw.append(mwieght)
-            topdbr.append(uinfo['rated'][smid])
+            topdbr.append(uinfo['Adjusted_rate'][smid])
         # if no similar one
         if len(topdbw) == 0:
             if predmid in self.m:
@@ -57,7 +57,7 @@ class CFItem:
             else:
                 score = 3
         else:
-            score = self.inner_product(topdbw, topdbr) / sum([abs(n) for n in topdbw])
+            score = uinfo['avg'] + self.inner_product(topdbw, topdbr) / sum([abs(n) for n in topdbw])
         
         if print_:
             print(predmid)
