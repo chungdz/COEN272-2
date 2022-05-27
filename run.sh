@@ -34,7 +34,7 @@ python cf_3.py
 # Item based Adjusted Similarity:
 # generate score5_cf4.txt score10_cf4.txt score20_cf4.txt
 # Best score 0.824741421769824
-python cf_4.py
+python cf_4.py 
 
 # My own alogrithm
 # neural network
@@ -49,4 +49,7 @@ python predict_nn.py --epoch=0
 python -m process_data.make_mf_data
 python train_mf.py --epoch=5
 python predict_mf.py --epoch=0
-
+# One Slope
+# generate score5_cf5.txt score10_cf5.txt score20_cf5.txt
+# Best score 0.763913971433262
+python cf_5.py 

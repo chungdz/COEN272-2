@@ -16,7 +16,10 @@ class OneSlope:
         for uid, uinfo in tqdm(testd.items()):
             
             for predmid in uinfo['to_predict']:
-                score = self.cal_score(predmid, uinfo)
+                if predmid in self.m:
+                    score = self.cal_score(predmid, uinfo)
+                else:
+                    score = uinfo['avg']
                 score = round(score)
                 if score < 1:
                     score = 1
